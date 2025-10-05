@@ -1,4 +1,4 @@
--- Buat tabel siswa
+-- membuat tabel siswa
 CREATE TABLE siswa (
     id SERIAL PRIMARY KEY,
     nama VARCHAR(100) NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE siswa (
     jurusan VARCHAR(50)
 );
 
--- Buat tabel nilai
+-- membuat tabel nilai
 CREATE TABLE nilai (
     id SERIAL PRIMARY KEY,
     siswa_id INT REFERENCES siswa(id) ON DELETE CASCADE,
@@ -14,15 +14,17 @@ CREATE TABLE nilai (
     nilai INT
 );
 
--- Tambah data siswa (5 siswa)
+-- menambah data siswa
 INSERT INTO siswa (nama, umur, jurusan) VALUES
 ('Andi', 16, 'IPA'),
 ('Budi', 17, 'IPS'),
 ('Citra', 16, 'IPA'),
 ('Dewi', 17, 'Bahasa'),
-('Eko', 16, 'IPS');
+('Eko', 16, 'IPS'),
+('Levi', 17, 'IPA'),
+('Dafa', 16, 'IPS');
 
--- Tambah data nilai (minimal 1 nilai per siswa)
+-- menambah data nilai
 INSERT INTO nilai (siswa_id, mata_pelajaran, nilai) VALUES
 (1, 'Matematika', 85),
 (1, 'Bahasa Inggris', 88),
@@ -31,30 +33,22 @@ INSERT INTO nilai (siswa_id, mata_pelajaran, nilai) VALUES
 (4, 'Bahasa Indonesia', 95),
 (5, 'Ekonomi', 80);
 
-------------------------------------------------------
--- QUERY
-------------------------------------------------------
-
--- Tampilkan semua siswa
+-- menampilkan semua siswa
 SELECT * FROM siswa;
 
--- Tampilkan siswa jurusan IPA
+-- menampilkan siswa jurusan IPA
 SELECT * FROM siswa WHERE jurusan = 'IPA';
 
--- Tampilkan nilai rata-rata tiap siswa (JOIN + GROUP BY)
-SELECT s.nama, AVG(n.nilai) AS rata_nilai
-FROM siswa s
-JOIN nilai n ON s.id = n.siswa_id
-GROUP BY s.nama;
+-- menampilkan nilai rata-rata tiap siswa (JOIN dan GROUP BY)
+SELECT siswa.nama, AVG(n.nilai) AS rata_nilai
+FROM siswa
+JOIN nilai ON siswa.id = nilai.siswa_id
+GROUP BY siswa.nama;
 
-------------------------------------------------------
--- UPDATE & DELETE
-------------------------------------------------------
-
--- Ubah jurusan Budi jadi IPA
+-- ubah jurusan salah satu siswa
 UPDATE siswa 
 SET jurusan = 'IPA' 
 WHERE nama = 'Budi';
 
--- Hapus nilai dengan id = 3
+-- hapus satu data nilai siswa
 DELETE FROM nilai WHERE id = 3;
