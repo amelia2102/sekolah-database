@@ -49,8 +49,8 @@ GROUP BY siswa.nama;
 
 -- ubah jurusan salah satu siswa
 UPDATE siswa 
-SET jurusan = 'Bahasa' 
-WHERE nama = 'Dafa';
+SET jurusan = 'IPS' 
+WHERE nama = 'Citra';
 
 -- hapus satu data nilai siswa
-DELETE FROM nilai WHERE id = 3;
+DELETE FROM nilai WHERE id = 2;
