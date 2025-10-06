@@ -32,6 +32,8 @@ INSERT INTO nilai (siswa_id, mata_pelajaran, nilai) VALUES
 (3, 'Fisika', 90),
 (4, 'Bahasa Indonesia', 95),
 (5, 'Ekonomi', 80);
+(6, 'Seni Budaya', 85);
+
 
 -- menampilkan semua siswa
 SELECT * FROM siswa;
@@ -47,8 +49,8 @@ GROUP BY siswa.nama;
 
 -- ubah jurusan salah satu siswa
 UPDATE siswa 
-SET jurusan = 'IPA' 
-WHERE nama = 'Budi';
+SET jurusan = 'Bahasa' 
+WHERE nama = 'Dafa';
 
 -- hapus satu data nilai siswa
 DELETE FROM nilai WHERE id = 3;
